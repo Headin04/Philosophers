@@ -6,7 +6,7 @@
 #    By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 14:42:57 by ode-cleb          #+#    #+#              #
-#    Updated: 2023/06/21 17:04:29 by ode-cleb         ###   ########.fr        #
+#    Updated: 2023/06/22 13:19:40 by ode-cleb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ RM				= rm -rf
 
 C_DIR			= src
 C_FILES			= main.c\
+					utils.c\
 
 #C_FILES_BONUS	=
 
@@ -38,7 +39,7 @@ OBJS			= $(patsubst %, $(O_DIR)/%, $(O_FILES))
 
 		#FLAGS#
 
-FLAGS			= -Wall -Wextra -Werror
+FLAGS			= -Wall -Wextra -Werror -pthread
 
 ifeq ($(debug), true)
 	FLAGS += -fsanitize=address,undefined -g3
