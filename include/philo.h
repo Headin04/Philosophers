@@ -36,6 +36,7 @@ typedef struct s_philo
 
 /*MAIN*/
 void	initialize_philo(t_philo *philo, int argc, char **argv);
+int	join_thread(t_philo *main, t_thread *thread);
 
 /*UTILS*/
 int check_numbers(char **argv);
