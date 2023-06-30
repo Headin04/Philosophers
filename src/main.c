@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 16:52:13 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/22 14:55:31 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:58:39 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ void	*routine(void *args)
 	return 0;
 }
 
-int	create_thread(t_philo *main, t_thread *thread)
+int	create_thread(t_main *main, t_thread *thread)
 {
-	pthread_t	tmp[main->nb_philo];
+	pthread_t	tmp[main->param.nb_philo];
 	size_t		i;
 	
 	i = 0;
 	thread->philo = tmp;
 	pthread_mutex_init(&thread->mutex, NULL);
-	while (i < main->nb_philo)
+	while (i < main->param.nb_philo)
 	{
 		if (pthread_create(&thread->philo[i], NULL, &routine, (void *)thread) != 0)
 		{
@@ -48,12 +48,12 @@ int	create_thread(t_philo *main, t_thread *thread)
 	return (0);
 }
 
-int	join_thread(t_philo *main, t_thread *thread)
+int	join_thread(t_main *main, t_thread *thread)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < main->nb_philo)
+	while (i < main->param.nb_philo)
 	{
 		if (pthread_join(thread->philo[i], NULL) != 0)
 			return (1);
@@ -64,29 +64,27 @@ int	join_thread(t_philo *main, t_thread *thread)
 	return (0);
 }
 
-int	f_philo(t_philo *main)
+int	f_philo(t_main *main)
 {
-	t_thread	thread;
-	
-	create_thread(main, &thread);
+	create_thread(main, &main->thread);
 	return (0);
 }
 
-void	initialize_philo(t_philo *main, int argc, char **argv)
+void	initialize_philo(t_main *main, int argc, char **argv)
 {
 	if (argc == 6)
-		main->must_end = ft_atoi(argv[5]);
+		main->param.must_end = ft_atoi(argv[5]);
 	else
-		main->must_end = -1;
-	main->nb_philo = ft_atoi(argv[1]);
-	main->time_to_die = ft_atoi(argv[2]);
-	main->time_to_eat = ft_atoi(argv[3]);
-	main->time_to_sleep = ft_atoi(argv[4]);
+		main->param.must_end = -1;
+	main->param.nb_philo = ft_atoi(argv[1]);
+	main->param.time_to_die = ft_atoi(argv[2]);
+	main->param.time_to_die = ft_atoi(argv[3]);
+	main->param.time_to_sleep = ft_atoi(argv[4]);
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo	main;
+	t_main	main;	
 
 	if (argc  != 6 && argc != 5)
 	{
