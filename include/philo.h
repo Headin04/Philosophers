@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:00:22 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/06/30 11:58:17 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:22:07 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <pthread.h>
 
 typedef struct s_thread
@@ -34,14 +35,27 @@ typedef struct s_param
 
 }   t_param;
 
+typedef struct s_philo
+{
+    size_t  id;
+    size_t  nb_of_eat;
+    size_t  time_until_death;
+}   t_philo;
+
 typedef struct s_main
 {
     t_param     param;
     t_thread    thread;
+    t_philo     *philo;
 }   t_main;
 
 /*MAIN*/
-void	initialize_philo(t_main *philo, int argc, char **argv);
+int handling_errors(int argc, char **argv);
+void	initialize_param(t_main *philo, int argc, char **argv);
+int initialize_philo(t_main *main);
+int	f_philo(t_main *main);
+void	*routine(void *args);
+int	create_thread(t_main *main, t_thread *thread);
 int	join_thread(t_main *main, t_thread *thread);
 
 /*UTILS*/
