@@ -23,7 +23,7 @@ void	*routine(void *args)
 		n++;
 	printf("%i\n", n);
 	pthread_mutex_unlock(&thread->mutex);
-	return 0;
+	return (TRUE);
 }
 
 int	create_thread(t_main *main, t_thread *thread)
@@ -36,16 +36,16 @@ int	create_thread(t_main *main, t_thread *thread)
 	pthread_mutex_init(&thread->mutex, NULL);
 	while (i < main->param.nb_philo)
 	{
-		if (pthread_create(&thread->philo[i], NULL, &routine, (void *)thread) != 0)
+		if (pthread_create(&thread->philo[i], NULL, &routine, (void *)thread) != TRUE)
 		{
 			printf("failed to create thread\n");
-			return (1);
+			return (FALSE);
 		}
 		printf("trade %zu has started\n", i);
 		i++;
 	}
 	join_thread(main, thread);
-	return (0);
+	return (TRUE);
 }
 
 int	join_thread(t_main *main, t_thread *thread)
@@ -55,11 +55,11 @@ int	join_thread(t_main *main, t_thread *thread)
 	i = 0;
 	while (i < main->param.nb_philo)
 	{
-		if (pthread_join(thread->philo[i], NULL) != 0)
-			return (1);
+		if (pthread_join(thread->philo[i], NULL) != TRUE)
+			return (FALSE);
 		printf("trade %zu has finished\n", i);
 		i++;
 	}
 	pthread_mutex_destroy(&thread->mutex);
-	return (0);
+	return (TRUE);
 }

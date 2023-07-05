@@ -31,7 +31,7 @@ int	initialize_philo(t_main *main)
 	i = 0;
 	main->philo = malloc(sizeof(t_philo) * (main->param.nb_philo + 1));
 	if (main->philo == NULL)
-		return (0);
+		return (FALSE);
 	while (i < main->param.nb_philo)
 	{
 		main->philo[i].id = i + 1;
@@ -40,5 +40,5 @@ int	initialize_philo(t_main *main)
 		// printf("id == %zu\n", main->philo[i].id);
 		i++;
 	}
-	return (1);
+	return (TRUE);
 }

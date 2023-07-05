@@ -15,7 +15,7 @@
 int	f_philo(t_main *main)
 {
 	create_thread(main, &main->thread);
-	return (0);
+	return (TRUE);
 }
 
 int	main(int argc, char **argv)
@@ -23,11 +23,11 @@ int	main(int argc, char **argv)
 	t_main	main;	
 
 	if (handling_errors(argc, argv) == 0)
-		return (0);
+		return (FALSE);
 	initialize_param(&main, argc, argv);
 	initialize_philo(&main);
 	f_philo(&main);
 	printf("all good\n");
 	free(main.philo);
-	return (1);
+	return (TRUE);
 }

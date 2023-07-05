@@ -24,20 +24,20 @@ int	check_numbers(char **argv)
         while (argv[i][y] != '\0')
         {   
             if (ft_isdigit(argv[i][y]) == 0)
-                return (0);
+                return (FALSE);
             y++;
         }
         i++;
     }
-    return (1);
+    return (TRUE);
 }
 
 int ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
+		return (TRUE);
 	else
-		return (0);
+		return (FALSE);
 }
 
 int	ft_atoi(const char *str)
