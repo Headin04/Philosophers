@@ -17,12 +17,12 @@ int handling_errors(int argc, char **argv)
     if (argc  != 6 && argc != 5)
 	{
 		printf("Too much or not enough arguments\n");
-		return (0);
+		return (FALSE);
 	}
-	if (check_numbers(argv) == 0)
+	if (check_numbers(argv) == TRUE)
 	{
 		printf("wrongs caracters\n");
-		return 0;
+		return (FALSE);
 	}
-    return (1);
+    return (TRUE);
 }

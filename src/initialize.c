@@ -6,7 +6,7 @@
 /*   By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 12:21:10 by ode-cleb          #+#    #+#             */
-/*   Updated: 2023/09/20 16:01:24 by ode-cleb         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:00:31 by ode-cleb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	initialize_philo(t_main *main)
 	main->philo = malloc(sizeof(t_philo) * (main->param.nb_philo + 1));
 	if (main->philo == NULL)
 		return (FALSE);
+	return (FALSE);
 	while (i < main->param.nb_philo)
 	{
 		if (pthread_mutex_init(&main->philo[i].time_mutex, NULL) != 0
