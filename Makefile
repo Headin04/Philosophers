@@ -6,7 +6,7 @@
 #    By: ode-cleb <ode-cleb@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/24 14:42:57 by ode-cleb          #+#    #+#              #
-#    Updated: 2023/06/30 14:14:34 by ode-cleb         ###   ########.fr        #
+#    Updated: 2023/09/20 16:52:13 by ode-cleb         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ C_FILES			= main.c\
 					initialize.c\
 					handling_errors.c\
 					handling_thread.c\
+					destroy_free.c\
+					handle_time.c\
 #C_FILES_BONUS	=
 
 SRCS			= $(patsubst %, $(C_DIR)/%, $(C_FILES))
